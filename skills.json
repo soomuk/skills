@@ -1,0 +1,60 @@
+{
+  "site": {
+    "title": "樹默 스킬 서가",
+    "subtitle": "수묵학술문화연구소 공개 AI 스킬",
+    "intro": "스킬을 고르고, 문장을 복사해 Claude에 붙여 넣으세요.",
+    "org": "수묵학술문화연구소 (soomuk)",
+    "github": "https://github.com/soomuk",
+    "license": "MIT"
+  },
+  "common_steps": [
+    { "title": "설치", "text": "설치 문장을 Claude 채팅에 붙여 넣고, 뜨는 카드에서 [저장]" },
+    { "title": "사용", "text": "자료를 올리고 사용 예시 문장을 붙여 넣기" }
+  ],
+  "common_note": "처음 한 번, Claude 설정 → 기능(Capabilities)에서 코드 실행을 켜 두세요.",
+  "skills": [
+    {
+      "id": "art-analysis",
+      "name": "미술품 판독 노트",
+      "skill_name": "soomuk-art-analysis",
+      "tagline": "미술품 사진을 세부까지 판독해 HTML 노트로 정리합니다.",
+      "flow": "작품 사진 → 판독 노트(HTML)",
+      "repo": "https://github.com/soomuk/art-analysis",
+      "install_prompt": "https://github.com/soomuk/art-analysis 저장소의 soomuk-art-analysis 스킬을 설치해줘",
+      "zip": "https://github.com/soomuk/art-analysis/raw/main/dist/soomuk-art-analysis.zip",
+      "claude_code": [
+        "/plugin marketplace add soomuk/art-analysis",
+        "/plugin install soomuk-art-analysis@soomuk"
+      ],
+      "examples": [
+        "이 작품 판독 노트 만들어 줘. 알려진 정보: ○○사 소장, 18세기 영산회상도.",
+        "이 탁본 판독만 먼저 보여 줘. 확인한 뒤에 노트를 만들어 줘."
+      ],
+      "note": "진위 판정은 하지 않습니다. 판독마다 보임·추정·판단 불가를 표시합니다.",
+      "extra": null
+    },
+    {
+      "id": "k-buddhist-journal",
+      "name": "불교학 학술지 편집검토",
+      "skill_name": "journal-review",
+      "tagline": "불교학 학술지 29종의 투고규정으로 원고를 점검합니다.",
+      "flow": "원고(PDF·DOCX·HWPX) → 편집점검보고서(.docx)",
+      "repo": "https://github.com/soomuk/k-buddhist-journal",
+      "install_prompt": "https://github.com/soomuk/k-buddhist-journal 의 편집검토 스킬을 내 Claude에 설치해줘",
+      "zip": "https://raw.githubusercontent.com/soomuk/k-buddhist-journal/main/dist/journal-review.zip",
+      "claude_code": [
+        "/plugin marketplace add soomuk/k-buddhist-journal",
+        "/plugin install k-buddhist-journal@soomuk"
+      ],
+      "examples": [
+        "『선학』 투고규정으로 이 논문 편집 검토해줘",
+        "첨부한 투고규정 PDF 기준으로 이 원고 편집 검토해줘"
+      ],
+      "note": "게재 판정은 하지 않습니다. 인명·연대·대장경 번호는 직접 다시 확인하세요.",
+      "extra": {
+        "title": "수록 학술지 29종",
+        "items": ["강좌미술사", "대각사상", "동아시아불교문화", "동악미술사학", "명상심리상담", "무형문화연구", "보조사상", "불교문예연구", "불교미술사학", "불교연구", "불교와 사회", "불교철학", "불교학리뷰", "불교학밀교학연구", "불교학보", "불교학연구", "선문화연구", "선학", "세화불학", "원불교사상과 종교문화", "인도철학", "전자불전", "정토학연구", "종학연구", "한국교수불자연합", "한국불교사연구", "한국불교학", "한마음연구", "IJBTC"]
+      }
+    }
+  ]
+}
