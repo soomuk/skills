@@ -8,8 +8,18 @@
     "license": "MIT"
   },
   "common_steps": [
-    { "title": "설치", "text": "설치 문장을 Claude 채팅에 붙여 넣고, 뜨는 카드에서 [저장]" },
-    { "title": "사용", "text": "자료를 올리고 사용 예시 문장을 붙여 넣기" }
+    {
+      "title": "설치",
+      "text": "설치 문장을 Claude 채팅에 붙여 넣고, 뜨는 카드에서 [저장]"
+    },
+    {
+      "title": "불러오기",
+      "text": "채팅창에 /를 치고 스킬 이름을 고르기"
+    },
+    {
+      "title": "사용",
+      "text": "자료를 올리고 요청 문장을 이어서 쓰기"
+    }
   ],
   "common_note": "처음 한 번, Claude 설정 → 기능(Capabilities)에서 코드 실행을 켜 두세요.",
   "skills": [
@@ -21,6 +31,7 @@
       "flow": "작품 사진 → 판독 노트(HTML)",
       "repo": "https://github.com/soomuk/art-analysis",
       "install_prompt": "https://github.com/soomuk/art-analysis 저장소의 soomuk-art-analysis 스킬을 설치해줘",
+      "invoke": "/soomuk-art-analysis",
       "zip": "https://github.com/soomuk/art-analysis/raw/main/dist/soomuk-art-analysis.zip",
       "claude_code": [
         "/plugin marketplace add soomuk/art-analysis",
@@ -41,6 +52,7 @@
       "flow": "원고(PDF·DOCX·HWPX) → 편집점검보고서(.docx)",
       "repo": "https://github.com/soomuk/k-buddhist-journal",
       "install_prompt": "https://github.com/soomuk/k-buddhist-journal 의 편집검토 스킬을 내 Claude에 설치해줘",
+      "invoke": "/journal-review",
       "zip": "https://raw.githubusercontent.com/soomuk/k-buddhist-journal/main/dist/journal-review.zip",
       "claude_code": [
         "/plugin marketplace add soomuk/k-buddhist-journal",
@@ -53,7 +65,37 @@
       "note": "게재 판정은 하지 않습니다. 인명·연대·대장경 번호는 직접 다시 확인하세요.",
       "extra": {
         "title": "수록 학술지 29종",
-        "items": ["강좌미술사", "대각사상", "동아시아불교문화", "동악미술사학", "명상심리상담", "무형문화연구", "보조사상", "불교문예연구", "불교미술사학", "불교연구", "불교와 사회", "불교철학", "불교학리뷰", "불교학밀교학연구", "불교학보", "불교학연구", "선문화연구", "선학", "세화불학", "원불교사상과 종교문화", "인도철학", "전자불전", "정토학연구", "종학연구", "한국교수불자연합", "한국불교사연구", "한국불교학", "한마음연구", "IJBTC"]
+        "items": [
+          "강좌미술사",
+          "대각사상",
+          "동아시아불교문화",
+          "동악미술사학",
+          "명상심리상담",
+          "무형문화연구",
+          "보조사상",
+          "불교문예연구",
+          "불교미술사학",
+          "불교연구",
+          "불교와 사회",
+          "불교철학",
+          "불교학리뷰",
+          "불교학밀교학연구",
+          "불교학보",
+          "불교학연구",
+          "선문화연구",
+          "선학",
+          "세화불학",
+          "원불교사상과 종교문화",
+          "인도철학",
+          "전자불전",
+          "정토학연구",
+          "종학연구",
+          "한국교수불자연합",
+          "한국불교사연구",
+          "한국불교학",
+          "한마음연구",
+          "IJBTC"
+        ]
       }
     }
   ]

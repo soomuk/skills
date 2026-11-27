@@ -38,6 +38,7 @@ Claude에게 "스킬 서가에 ○○ 스킬 추가해줘"라고 하고 바뀐 `
 | `flow` | 올릴 것 → 받는 것 (한 줄) |
 | `repo` | 스킬 저장소 주소 |
 | `install_prompt` | Claude 채팅에 붙여 넣을 설치 문장 |
+| `invoke` | 채팅창에서 스킬을 부르는 슬래시 명령(예: `/journal-review`) |
 | `zip` | 업로드용 zip 파일 주소 |
 | `claude_code` | Claude Code 설치 명령(줄마다 하나). 없으면 `[]` |
 | `examples` | 사용 예시 문장 목록(2개 권장) |
@@ -60,7 +61,7 @@ Claude에게 "스킬 서가에 ○○ 스킬 추가해줘"라고 하고 바뀐 `
 ```
 skills.json                   ← 스킬 목록(이 파일만 고칩니다)
 build.py                      ← skills.json으로 index.html을 만드는 스크립트
-index.html                    ← 만들어진 페이지(자동 갱신)
+index.html                    ← 미리 보기용 사본(실제 페이지는 Actions가 매번 새로 만듭니다)
 assets/logo.jpg               ← 연구소 로고
 .github/workflows/pages.yml   ← 자동 빌드·배포 설정
 ```

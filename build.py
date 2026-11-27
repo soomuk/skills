@@ -95,7 +95,15 @@ def skill_section(s, n):
     out.append('<h3>설치</h3>')
     out.append(copy_box(f"install-{sid}", s["install_prompt"], "복사"))
 
+    if s.get("invoke"):
+        out.append('<h3>불러오기</h3>')
+        out.append('<p class="hint">채팅창에 <b>/</b>를 치면 스킬 목록이 뜹니다. 아래 이름을 고르거나 그대로 입력한 뒤, 한 칸 띄고 요청을 이어 쓰세요.</p>')
+        out.append(copy_box(f"invoke-{sid}", s["invoke"], "복사", light=True))
+        out.append('<p class="hint small">Claude Code에서도 /를 치고 스킬 이름을 검색해 고르면 됩니다.</p>')
+
     out.append('<h3>사용 예시</h3>')
+    if s.get("invoke"):
+        out.append(f'<p class="hint">스킬을 부른 뒤 이어 쓰거나, 슬래시 없이 그냥 요청해도 Claude가 알아서 이 스킬을 씁니다.</p>')
     for i, ex in enumerate(s.get("examples", []), 1):
         text = ex["text"] if isinstance(ex, dict) else ex
         out.append(copy_box(f"ex-{sid}-{i}", text, "복사", light=True))
@@ -183,6 +191,9 @@ h3{font-size:1rem;margin:22px 0 6px;color:var(--plum)}
 .copy.light{background:transparent;color:var(--ink);font-weight:400}
 .copy.light:hover{background:var(--ink);color:#fff}
 .copy.done,.copy.light.done{background:var(--moss);border-color:var(--moss);color:#fff}
+.hint{margin:0 0 4px;color:var(--sub);font-size:.92rem}
+.hint.small{margin-top:4px;font-size:.85rem}
+code{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:.85rem;background:#efe9dc;padding:1px 6px;border-radius:5px;overflow-wrap:anywhere}
 .note{margin:16px 0 0;color:var(--sub);font-size:.92rem;border-left:3px solid var(--plum);padding-left:10px}
 details{margin:14px 0 0;font-size:.92rem}
 summary{cursor:pointer;color:var(--sub)}
