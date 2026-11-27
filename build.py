@@ -97,9 +97,8 @@ def skill_section(s, n):
 
     if s.get("invoke"):
         out.append('<h3>불러오기</h3>')
-        out.append('<p class="hint">채팅창에 <b>/</b>를 치면 스킬 목록이 뜹니다. 아래 이름을 고르거나 그대로 입력한 뒤, 한 칸 띄고 요청을 이어 쓰세요.</p>')
+        out.append('<p class="hint">채팅창에 <b>/</b>를 치면 스킬 목록이 뜹니다.<br>아래 이름을 고르거나 그대로 입력한 뒤, 한 칸 띄고 요청을 이어 쓰세요.</p>')
         out.append(copy_box(f"invoke-{sid}", s["invoke"], "복사", light=True))
-        out.append('<p class="hint small">Claude Code에서도 /를 치고 스킬 이름을 검색해 고르면 됩니다.</p>')
 
     out.append('<h3>사용 예시</h3>')
     if s.get("invoke"):
