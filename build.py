@@ -137,7 +137,7 @@ def build_body(data):
     sections = "".join(skill_section(s, i) for i, s in enumerate(skills, 1))
     body = f"""
 <header class="site-head">
-  <img class="logo" src="data:image/jpeg;base64,{logo}" alt="樹默 수묵학술문화연구소" width="80" height="80">
+  <img class="logo" src="data:image/jpeg;base64,{logo}" alt="樹默" width="80" height="80">
   <div><h1>{E(site["title"])}</h1><p class="sub">{E(site["subtitle"])}</p></div>
 </header>
 <main>
@@ -148,7 +148,7 @@ def build_body(data):
 {sections}
 </main>
 <footer class="site-foot">
-  <p>{E(site["org"])} · <a href="{E(site["github"])}">GitHub</a> · {E(site["license"])} License</p>
+  <p>{E(site["org"])} · <a href="{E(site["github"])}">GitHub</a> · {E(site.get("license_note") or site["license"] + " License")}</p>
 </footer>"""
     return body, logo
 

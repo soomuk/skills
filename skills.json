@@ -1,11 +1,12 @@
 {
   "site": {
     "title": "樹默 스킬 서가",
-    "subtitle": "수묵학술문화연구소 공개 AI 스킬",
+    "subtitle": "한민수(동명대)·진영아(신라대) 공개 AI 스킬",
     "intro": "스킬을 고르고, 문장을 복사해 Claude에 붙여 넣으세요.",
-    "org": "수묵학술문화연구소 (soomuk)",
+    "org": "제작 한민수(동명대), 진영아(신라대)",
     "github": "https://github.com/soomuk",
-    "license": "MIT"
+    "license": "MIT",
+    "license_note": "편집 스킬 MIT · 미술품 판독 스킬 CC BY-NC-SA 4.0 · 판독 노트 CC BY-NC-ND 4.0 · 학술지 투고규정은 각 학회 소유"
   },
   "common_steps": [
     {
@@ -27,7 +28,7 @@
       "id": "art-analysis",
       "name": "미술품 판독 노트",
       "skill_name": "soomuk-art-analysis",
-      "tagline": "미술품 사진을 세부까지 판독해 HTML 노트로 정리합니다.",
+      "tagline": "미술품 사진을 세부까지 판독해 용어 각주를 단 HTML 노트로 정리합니다.",
       "flow": "작품 사진 → 판독 노트(HTML)",
       "repo": "https://github.com/soomuk/art-analysis",
       "install_prompt": "https://github.com/soomuk/art-analysis 저장소의 soomuk-art-analysis 스킬을 설치해줘",
@@ -41,7 +42,7 @@
         "이 작품 판독 노트 만들어 줘. 알려진 정보: ○○사 소장, 18세기 영산회상도.",
         "이 탁본 판독만 먼저 보여 줘. 확인한 뒤에 노트를 만들어 줘."
       ],
-      "note": "진위 판정은 하지 않습니다. 판독마다 보임·추정·판단 불가를 표시합니다.",
+      "note": "연구·교육용입니다. 감정서가 아니며 매매·경매·감정 등 상업 거래에 쓸 수 없습니다. 진위가 의심되면 기준작 비교 장을 붙이되 결론은 '추정'으로만 적습니다.",
       "extra": null
     },
     {
@@ -62,7 +63,7 @@
         "『선학』 투고규정으로 이 논문 편집 검토해줘",
         "첨부한 투고규정 PDF 기준으로 이 원고 편집 검토해줘"
       ],
-      "note": "게재 판정은 하지 않습니다. 인명·연대·대장경 번호는 직접 다시 확인하세요.",
+      "note": "게재 판정은 하지 않습니다. 인명·연대·대장경 번호는 직접 다시 확인하세요. 학술지 투고규정의 저작권은 각 학회에 있습니다.",
       "extra": {
         "title": "수록 학술지 29종",
         "items": [

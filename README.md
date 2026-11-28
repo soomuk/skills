@@ -1,8 +1,8 @@
-<p align="center"><img src="assets/logo.jpg" width="120" alt="樹默 수묵학술문화연구소"></p>
+<p align="center"><img src="assets/logo.jpg" width="120" alt="樹默"></p>
 
 # 樹默 스킬 서가 (soomuk/skills)
 
-수묵학술문화연구소가 공개한 Claude 스킬을 한 페이지에 모은 안내 페이지입니다.
+한민수(동명대)·진영아(신라대)가 공개한 Claude 스킬을 한 페이지에 모은 안내 페이지입니다.
 
 **페이지 주소: https://soomuk.github.io/skills/**
 
@@ -10,7 +10,7 @@
 
 | 스킬 | 하는 일 | 저장소 |
 |---|---|---|
-| 미술품 판독 노트 | 미술품 사진을 세부까지 판독해 크롭을 붙인 HTML 노트로 정리 | [soomuk/art-analysis](https://github.com/soomuk/art-analysis) |
+| 미술품 판독 노트 | 미술품 사진을 세부까지 판독해 크롭·용어 각주를 붙인 HTML 노트로 정리(연구·교육용, 상업 거래 사용 금지) | [soomuk/art-analysis](https://github.com/soomuk/art-analysis) |
 | 불교학 학술지 편집검토 | 불교학 학술지 29종 규정으로 원고를 점검해 편집점검보고서(.docx) 작성 | [soomuk/k-buddhist-journal](https://github.com/soomuk/k-buddhist-journal) |
 
 ---
@@ -62,7 +62,7 @@ Claude에게 "스킬 서가에 ○○ 스킬 추가해줘"라고 하고 바뀐 `
 skills.json                   ← 스킬 목록(이 파일만 고칩니다)
 build.py                      ← skills.json으로 index.html을 만드는 스크립트
 index.html                    ← 미리 보기용 사본(실제 페이지는 Actions가 매번 새로 만듭니다)
-assets/logo.jpg               ← 연구소 로고
+assets/logo.jpg               ← 樹默 로고
 .github/workflows/pages.yml   ← 자동 빌드·배포 설정
 ```
 
@@ -70,4 +70,6 @@ assets/logo.jpg               ← 연구소 로고
 
 ## 라이선스
 
-MIT License · 수묵학술문화연구소 (soomuk)
+MIT License · Copyright (c) 2026 한민수(동명대), 진영아(신라대)
+
+각 스킬의 라이선스는 해당 저장소를 따릅니다(편집 스킬 MIT, 미술품 판독 스킬 CC BY-NC-SA 4.0). 미술품 판독 노트는 CC BY-NC-ND 4.0이며 상업 거래에 쓸 수 없고, 학술지 투고규정의 저작권은 각 학회에 있습니다.
