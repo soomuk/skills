@@ -81,6 +81,38 @@ def subset_woff2(path, text):
     return base64.b64encode(buf.getvalue()).decode(), missing
 
 
+def text_em(path, text):
+    """글꼴의 글자 너비(advance)를 더해 text의 폭을 em 단위로 돌려준다(글꼴이 없으면 None)."""
+    if not path:
+        return None
+    from fontTools.ttLib import TTFont
+    f = TTFont(path, fontNumber=kr_index(path), lazy=True)
+    cmap, hmtx, upm = f.getBestCmap(), f["hmtx"], f["head"].unitsPerEm
+    total = 0
+    for ch in text:
+        g = cmap.get(ord(ch))
+        total += hmtx[g][0] if g else upm
+    return total / upm
+
+
+def layout_css(site, skills, reg, bold):
+    """머리 제목·부제의 폭을 맞추고, 메뉴 버튼을 같은 폭으로 가운데 정렬하는 CSS를 글꼴 너비로 계산해 만든다."""
+    out = []
+    t, sub = text_em(bold, site["title"]), text_em(reg, site["subtitle"])
+    if t and sub:
+        # 부제 글씨 크기 = 제목 크기 × (제목 폭 ÷ 부제 폭). 두 줄의 가로폭이 같아진다.
+        out.append(f".sub{{font-size:calc(var(--h1) * {t / sub:.4f})}}")
+    widths = [text_em(bold, s["name"]) for s in skills]
+    if all(widths):
+        # 버튼 글씨 1.05rem(16.8px), 좌우 안쪽 여백 14px×2, 테두리 1.5px×2, 여유 6px
+        w = round(max(widths) * 16.8 + 28 + 3 + 6)
+        n = len(skills)
+        bp = n * w + (n - 1) * 10 + 28  # 한 줄에 다 들어가는 최소 화면 폭(폰 좌우 여백 14px×2)
+        out.append(f"@media (min-width:{bp}px){{.menu-list{{display:flex;flex-wrap:wrap;justify-content:center}}"
+                   f".menu-item{{flex:0 0 {w}px;text-align:center}}}}")
+    return "\n".join(out) + "\n"
+
+
 # ---------------------------------------------------------------- 화면 조각
 def copy_box(box_id, text, button="복사", light=False):
     cls = "copy light" if light else "copy"
@@ -166,7 +198,8 @@ body{margin:0;background:var(--paper);color:var(--ink);font-family:%%FAMILY%%;fo
 a{color:var(--plum)}
 .site-head{display:flex;align-items:center;gap:16px;max-width:760px;margin:0 auto;padding:32px 20px 4px}
 .logo{width:80px;height:80px;border-radius:50%;flex:none}
-h1{font-size:1.9rem;line-height:1.3;margin:0}
+h1{font-size:var(--h1);line-height:1.3;margin:0}
+:root{--h1:1.9rem}
 .sub{margin:0;color:var(--sub)}
 main{max-width:760px;margin:0 auto;padding:0 20px}
 .intro{font-size:1.1rem;margin:18px 0 10px}
@@ -212,8 +245,7 @@ summary{cursor:pointer;color:var(--sub)}
 @media (max-width:640px){
   .site-head{padding:22px 16px 2px;gap:12px}
   .logo{width:60px;height:60px}
-  h1{font-size:clamp(1rem,5vw,1.5rem)}
-  .sub{font-size:clamp(.8rem,3.6vw,1rem)}
+  :root{--h1:clamp(1rem,5vw,1.5rem)}
   main{padding:0 14px}
   .skill{padding:18px 14px}
   .copybox{padding:10px 10px 10px 12px}
@@ -294,6 +326,7 @@ def main():
         print(f"글꼴({kind}): {os.path.basename(path)} → {len(b64)*3//4//1024} KB")
     if faces:
         family = "'SoomukSerif'," + family
+    extra_css = layout_css(site, data["skills"], find_font("regular", a.font_regular), find_font("bold", a.font_bold))
 
     desc = site["intro"]
     doc = f"""<!DOCTYPE html>
@@ -309,7 +342,7 @@ def main():
 <link rel="icon" href="data:image/jpeg;base64,{logo}">
 <link rel="apple-touch-icon" href="data:image/jpeg;base64,{logo}">
 <style>
-{faces}{CSS.replace("%%FAMILY%%", family)}
+{faces}{CSS.replace("%%FAMILY%%", family)}{extra_css}
 </style>
 </head>
 <body>
