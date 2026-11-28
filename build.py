@@ -96,7 +96,7 @@ def text_em(path, text):
 
 
 def layout_css(site, skills, reg, bold):
-    """머리 제목·부제의 폭을 맞추고, 메뉴 버튼을 같은 폭으로 가운데 정렬하는 CSS를 글꼴 너비로 계산해 만든다."""
+    """머리 제목·부제의 폭을 맞추고, 메뉴 버튼을 같은 폭으로 왼쪽부터 나란히 놓는 CSS를 글꼴 너비로 계산해 만든다."""
     out = []
     t, sub = text_em(bold, site["title"]), text_em(reg, site["subtitle"])
     if t and sub:
@@ -108,7 +108,7 @@ def layout_css(site, skills, reg, bold):
         w = round(max(widths) * 16.8 + 28 + 3 + 6)
         n = len(skills)
         bp = n * w + (n - 1) * 10 + 28  # 한 줄에 다 들어가는 최소 화면 폭(폰 좌우 여백 14px×2)
-        out.append(f"@media (min-width:{bp}px){{.menu-list{{display:flex;flex-wrap:wrap;justify-content:center}}"
+        out.append(f"@media (min-width:{bp}px){{.menu-list{{display:flex;flex-wrap:wrap;justify-content:flex-start}}"
                    f".menu-item{{flex:0 0 {w}px;text-align:center}}}}")
     return "\n".join(out) + "\n"
 
