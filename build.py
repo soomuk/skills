@@ -31,6 +31,11 @@ FONT_GLOBS = {
 }
 
 E = lambda s: html.escape(str(s), quote=True)
+def BR(s):
+    """skills.json의 줄바꿈(\\n)을 화면 줄바꿈으로 바꾸고, 라이선스 이름(CC BY-NC-SA 4.0 등)은 한 줄에 붙여 둔다."""
+    import re
+    t = re.sub(r"(CC BY(?:-[A-Z]{2})* \d\.\d|CC0)", r'<span style="white-space:nowrap">\1</span>', E(s))
+    return "".join(f'<span class="fit">{ln}</span>' for ln in t.split("\n"))
 
 
 # ---------------------------------------------------------------- 글꼴
@@ -108,7 +113,7 @@ def skill_section(s, n):
         out.append(copy_box(f"ex-{sid}-{i}", text, "복사", light=True))
 
     if s.get("note"):
-        out.append(f'<p class="note">{E(s["note"])}</p>')
+        out.append(f'<p class="note">{BR(s["note"])}</p>')
 
     more = [f'<li><a href="{E(s["zip"])}">zip 파일 내려받기</a> — 카드가 안 뜨면 Claude 맞춤 설정 → 스킬 → + → Upload a skill로 올리기</li>']
     if s.get("claude_code"):
@@ -138,7 +143,7 @@ def build_body(data):
     body = f"""
 <header class="site-head">
   <img class="logo" src="data:image/jpeg;base64,{logo}" alt="樹默" width="80" height="80">
-  <div><h1>{E(site["title"])}</h1><p class="sub">{E(site["subtitle"])}</p></div>
+  <div class="head-txt"><h1><span class="fit">{E(site["title"])}</span></h1><p class="sub"><span class="fit">{E(site["subtitle"])}</span></p></div>
 </header>
 <main>
 <p class="intro">{E(site["intro"])}</p>
@@ -148,7 +153,7 @@ def build_body(data):
 {sections}
 </main>
 <footer class="site-foot">
-  <p>{E(site["org"])} · <a href="{E(site["github"])}">GitHub</a> · {E(site.get("license_note") or site["license"] + " License")}</p>
+  <p><span class="fit">{E(site["org"])} · <a href="{E(site["github"])}">GitHub</a></span>{BR(site.get("license_note") or site["license"] + " License")}</p>
 </footer>"""
     return body, logo
 
@@ -201,11 +206,14 @@ summary{cursor:pointer;color:var(--sub)}
 .chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}
 .chip{font-size:.85rem;background:#efe9dc;border-radius:99px;padding:2px 10px}
 .repo{margin:16px 0 0;font-size:.92rem}
+.fit{display:block}
+.head-txt{min-width:0;flex:1}
 .site-foot{max-width:760px;margin:0 auto;padding:12px 20px 36px;color:var(--sub);font-size:.85rem}
 @media (max-width:640px){
   .site-head{padding:22px 16px 2px;gap:12px}
   .logo{width:60px;height:60px}
-  h1{font-size:1.5rem}
+  h1{font-size:clamp(1rem,5vw,1.5rem)}
+  .sub{font-size:clamp(.8rem,3.6vw,1rem)}
   main{padding:0 14px}
   .skill{padding:18px 14px}
   .copybox{padding:10px 10px 10px 12px}
